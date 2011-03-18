@@ -18,6 +18,6 @@ int list_length(seq_list *L);
 
 status list_insert(seq_list *L, data_type x, int i);
 
-void list_delete(seq_list *L, int i);
+status list_delete(seq_list *L, int i);
 
 #endif 

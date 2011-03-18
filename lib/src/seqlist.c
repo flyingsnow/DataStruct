@@ -42,19 +42,32 @@ status list_insert(seq_list *L, data_type x, int i)
     }
 
     q = &(L->elem[i-1]);
-    
-    for(p = &(L->elem[L->length -1]); p >= q; p--)
-        *(p+1) = *p;
-    
+   
+    if(L->length != 0) {
+       for(p = &(L->elem[L->length -1]); p >= q; p--)
+         *(p+1) = *p;
+    }
+
     *q = x;
     L->length++;
     return OK;
 }
 
-void list_delete(seq_list *L, int i)
+//deleter element 
+status list_delete(seq_list *L, int i)
 {
+    data_type *q, *p;
 
+    if(i < 1 || i > L->length + 1)
+        return ERROR;
+    
+    p = &(L->elem[i-1]);   //delete point
+    
+    q = L->elem + L->length+1;  //the last position of the list
+
+    for(++p; p <= q; ++p)   //move element 
+        *(p-1) = *p;
+
+    L->length--;
+    return OK;
 }
-
-
-
