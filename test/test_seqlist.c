@@ -1,21 +1,20 @@
-#include "../lib/inc/Seqlist.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "seqlist.h"
 
 int main(int argc, char **argv)
 {
-    SeqList l;
+    seq_list l;
     int i;
 
-    InitList(&l); 
-    
-    for(i = 0; i <= 10 ; i++)
-        InsertList(&l,i,i);
-    DeletList(&l,5);
-    DeletList(&l,5);
-    printf("out put :\n");
+   if(OK != list_init(&l)) {
+        printf("Init list error!\n");
+   }
+   for (i = 1; i <= 100; i++)
+       list_insert(&l,i,i);
 
-    for(i = 0; i <= l.length; i++)
-        printf("%d\n",l.data[i]);
-                
-    return 0;
+   for(i = 0; i < l.length; i++)
+       printf("%3d\n",*(&l.elem[i]));
+   return 0;
 }
-
